@@ -8,6 +8,8 @@ A free browser extension: **select text, right-click, and hear it read aloud** i
 - 🎚️ 7 voices (US and UK, male and female), speed control, pause and stop
 - 🌐 Works in **Google Chrome** and **Brave** on Mac and Windows (and other Chromium browsers such as Edge)
 
+<p align="center"><img src="docs/popup.png" width="288" alt="The Read Aloud popup: voice picker, speed slider, read and stop buttons"></p>
+
 ## ⬇️ Install (about 5 minutes, no technical skills needed)
 
 ### 1. Download
@@ -31,10 +33,16 @@ In the address bar, type the line for your browser and press Enter:
 ### 4. Turn on "Developer mode"
 It's a switch in the **top-right corner** of that page (in Edge it's on the left). This just allows extensions that aren't from the store. Nothing else changes.
 
+![Turn on Developer mode](docs/step1-developer-mode.png)
+
 ### 5. Click "Load unpacked" and pick the folder
 A **Load unpacked** button appears at the top left. Click it, select the `read-aloud` folder from step 2 (the folder itself, not a file inside it), and click **Select** / **Open**.
 
-✅ Done! A welcome page opens with a quick how-to.
+![Click Load unpacked](docs/step2-load-unpacked.png)
+
+✅ Done! Read Aloud appears in your list, and a welcome page opens with a quick how-to.
+
+![Installed](docs/step3-installed.png)
 
 ### 6. (Recommended) Pin it
 Click the puzzle-piece icon 🧩 at the top right of the browser, then the pin 📌 next to **Read Aloud – Natural Voice**.
