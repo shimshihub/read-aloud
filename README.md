@@ -49,7 +49,7 @@ Click the puzzle-piece icon 🧩 at the top right of the browser, then the pin �
 
 ## How to use
 1. Highlight text on any web page
-2. Right-click → **Read aloud**
+2. Right-click → **Read aloud – natural voice** (the item with the blue speaker icon)
 3. The **first time**, it downloads the voice (about 330 MB, usually under a minute). After that it starts almost instantly.
 
 Click the blue speaker icon in the toolbar to change the voice or speed, or to pause and stop.
@@ -57,7 +57,8 @@ Shortcuts: **Alt+Shift+R** reads the selection and **Alt+Shift+S** stops (on Mac
 
 ## Troubleshooting
 - **"Manifest file is missing or unreadable"**: you picked the wrong folder. Pick the folder that directly contains `manifest.json` (open it and check).
-- **No "Read aloud" in the right-click menu**: make sure you selected text first. Reload the page if you installed the extension while it was open.
+- **No "Read aloud – natural voice" in the right-click menu**: make sure you selected text first. Reload the page if you installed the extension while it was open.
+- **It reads the whole page, or says it can't read the page**: that is a different extension. Other read-aloud extensions (for example "Read Aloud: A Text to Speech Voice Reader") add their own "Read aloud…" item to the same menu. Pick **Read aloud – natural voice**, or remove the other extension.
 - **Nothing happens the first time**: it's downloading the voice. Click the speaker icon to see the progress.
 - **It doesn't read on some pages**: browsers block extensions on their own pages (like `chrome://` pages and the Web Store).
 - **Updating to a new version**: download the new zip, replace the folder's contents, then click ↻ on the extension's card in the extensions page.

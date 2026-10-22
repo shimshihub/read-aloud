@@ -3,19 +3,32 @@
 const DEFAULTS = { voice: "af_heart", speed: 1.0 };
 
 chrome.runtime.onInstalled.addListener(({ reason }) => {
-  chrome.contextMenus.create({ id: "read-aloud", title: "Read aloud", contexts: ["selection"] });
+  // A distinct title: other read-aloud extensions put their own "Read aloud…" item in the same menu.
+  chrome.contextMenus.removeAll(() =>
+    chrome.contextMenus.create({ id: "read-aloud", title: "Read aloud – natural voice", contexts: ["selection", "editable"] })
+  );
   if (reason === "install") chrome.tabs.create({ url: "welcome.html" });
 });
 
-chrome.contextMenus.onClicked.addListener((info) => {
-  if (info.menuItemId === "read-aloud" && info.selectionText) speak(info.selectionText);
-});
+chrome.contextMenus.onClicked.addListener(onMenuClick);
+
+// selectionText is whitespace-collapsed and empty for text boxes, so read the clicked frame
+// directly and fall back to it when the page can't be scripted.
+async function onMenuClick(info, tab) {
+  if (info.menuItemId !== "read-aloud") return;
+  let text = "";
+  if (tab?.id) text = await readFrames({ tabId: tab.id, frameIds: [info.frameId ?? 0] });
+  text ||= info.selectionText || "";
+  if (text.trim()) speak(text);
+  else setState({ status: "error", detail: "Select some text first, then right-click it." });
+}
 
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === "stop") return sendToOffscreen({ type: "stop" });
   if (command === "read-selection") {
     const text = await getSelectionFromActiveTab();
     if (text) speak(text);
+    else setState({ status: "error", detail: "Select some text first." });
   }
 });
 
@@ -39,16 +52,25 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 async function getSelectionFromActiveTab() {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (!tab?.id) return "";
+  return readFrames({ tabId: tab.id, allFrames: true });
+}
+
+async function readFrames(target) {
   try {
-    const results = await chrome.scripting.executeScript({
-      target: { tabId: tab.id, allFrames: true },
-      func: () => getSelection().toString(),
-    });
+    const results = await chrome.scripting.executeScript({ target, func: selectedText });
     return results.map((r) => r.result || "").find((t) => t.trim()) || "";
   } catch (e) {
     console.warn("Could not read selection (restricted page?)", e);
     return "";
   }
+}
+
+// Runs inside the page. Text selected in an input or textarea is not part of getSelection().
+function selectedText() {
+  const el = document.activeElement;
+  if (el && /^(INPUT|TEXTAREA)$/.test(el.tagName) && typeof el.selectionStart === "number" && el.selectionEnd > el.selectionStart)
+    return el.value.slice(el.selectionStart, el.selectionEnd);
+  return getSelection().toString();
 }
 
 async function speak(text) {

@@ -3,7 +3,7 @@ const send = (msg) => chrome.runtime.sendMessage({ ...msg, target: "background" 
 let status = "idle";
 
 const mac = /Mac/.test(navigator.platform);
-$("hint").textContent = `Right-click selected text → Read aloud · ${mac ? "⌥⇧R" : "Alt+Shift+R"} read · ${mac ? "⌥⇧S" : "Alt+Shift+S"} stop`;
+$("hint").textContent = `Right-click selected text → Read aloud – natural voice · ${mac ? "⌥⇧R" : "Alt+Shift+R"} read · ${mac ? "⌥⇧S" : "Alt+Shift+S"} stop`;
 
 chrome.storage.sync.get(["voice", "speed"]).then(({ voice = "af_heart", speed = 1 }) => {
   $("voice").value = voice;
