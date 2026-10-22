@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Read Aloud – Natural Voice</title>
+<meta name="description" content="Free, private, natural-voice read-aloud for Chrome and Brave. Select text, right-click, Read aloud.">
+<meta property="og:title" content="Read Aloud – Natural Voice">
+<meta property="og:description" content="Select text, right-click, hear it in a natural voice. Free, private, works offline.">
+<meta property="og:image" content="https://shimshihub.github.io/read-aloud/popup.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%232563eb'/><path d='M5 10v4h3l4 3V7L8 10H5z' fill='white'/><path d='M15 9.5a3.5 3.5 0 0 1 0 5M17 7a7 7 0 0 1 0 10' stroke='white' stroke-width='1.6' fill='none' stroke-linecap='round'/></svg>">
+<style>
+  :root {
+    --bg: #fafaf9; --surface: #ffffff; --text: #1c1917; --muted: #57534e;
+    --border: #e7e5e4; --accent: #2563eb; --accent-text: #ffffff; --code: #f5f5f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0a09; --surface: #1c1917; --text: #f5f5f4; --muted: #a8a29e;
+      --border: #292524; --accent: #3b82f6; --accent-text: #ffffff; --code: #292524;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 16px 64px; }
+  header { text-align: center; margin-bottom: 40px; }
+  .logo { width: 64px; height: 64px; margin-bottom: 12px; }
+  h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.15; margin: 0 0 12px; letter-spacing: -0.02em; }
+  .tagline { color: var(--muted); font-size: 19px; margin: 0 auto 28px; max-width: 520px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: var(--accent-text);
+    padding: 14px 28px; border-radius: 10px; font-weight: 600; text-decoration: none; font-size: 18px;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .sub { color: var(--muted); font-size: 14px; margin-top: 10px; }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 0 0 48px; padding: 0; list-style: none; }
+  .features li { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .features b { display: block; margin-bottom: 2px; }
+  .features span { color: var(--muted); font-size: 15px; }
+  h2 { font-size: 24px; margin: 48px 0 16px; letter-spacing: -0.01em; }
+  ol.steps { padding: 0; margin: 0; list-style: none; counter-reset: s; }
+  ol.steps > li { counter-increment: s; position: relative; padding-left: 44px; margin-bottom: 24px; }
+  ol.steps > li::before {
+    content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-text); font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  ol.steps h3 { margin: 0 0 4px; font-size: 18px; }
+  ol.steps p { margin: 4px 0; }
+  code { background: var(--code); padding: 2px 6px; border-radius: 5px; font-size: 0.92em; }
+  img.shot { max-width: 100%; border: 1px solid var(--border); border-radius: 10px; margin-top: 10px; display: block; }
+  .center { text-align: center; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+  .card ul { margin: 0; padding-left: 20px; }
+  .card li { margin: 6px 0; }
+  a { color: var(--accent); }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#2563eb"/><path d="M5 10v4h3l4 3V7L8 10H5z" fill="#fff"/><path d="M15 9.5a3.5 3.5 0 0 1 0 5M17 7a7 7 0 0 1 0 10" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+    <h1>Read Aloud – Natural Voice</h1>
+    <p class="tagline">Select text, right-click, and hear it in a natural voice instead of the usual robotic one. Like Speechify, but free and private.</p>
+    <a class="btn" href="https://github.com/shimshihub/read-aloud/releases/latest/download/read-aloud.zip">Download for Chrome &amp; Brave</a>
+    <p class="sub">Free · about 9 MB · Mac &amp; Windows · also works in Edge</p>
+  </header>
+
+  <ul class="features">
+    <li><b>🗣️ Natural voice</b><span>Powered by Kokoro, one of the best open-source voices</span></li>
+    <li><b>🔒 Private</b><span>The voice runs on your computer. Your text never leaves it.</span></li>
+    <li><b>✈️ Works offline</b><span>After the first use, no internet needed</span></li>
+    <li><b>🎚️ 7 voices</b><span>US &amp; UK, male &amp; female, with speed control</span></li>
+  </ul>
+
+  <img class="shot" src="popup.png" alt="The Read Aloud popup: voice picker, speed slider, read and stop buttons" style="max-width:288px;margin:0 auto">
+
+  <h2>Install (about 5 minutes)</h2>
+  <ol class="steps">
+    <li>
+      <h3>Download</h3>
+      <p><a href="https://github.com/shimshihub/read-aloud/releases/latest/download/read-aloud.zip">Download read-aloud.zip</a></p>
+    </li>
+    <li>
+      <h3>Unzip it and keep the folder</h3>
+      <p><b>Mac:</b> double-click the zip. <b>Windows:</b> right-click → <b>Extract All…</b> → <b>Extract</b>.</p>
+      <p>Move the <code>read-aloud</code> folder to your <b>Documents</b> folder. The browser loads the extension from it, so don't delete it.</p>
+    </li>
+    <li>
+      <h3>Open the extensions page</h3>
+      <p>Type in the address bar and press Enter: <code>chrome://extensions</code> (Chrome), <code>brave://extensions</code> (Brave) or <code>edge://extensions</code> (Edge).</p>
+    </li>
+    <li>
+      <h3>Turn on "Developer mode"</h3>
+      <p>The switch in the top-right corner (left side in Edge). It only allows extensions that aren't from the store.</p>
+      <img class="shot" src="step1-developer-mode.png" alt="Turn on Developer mode" loading="lazy">
+    </li>
+    <li>
+      <h3>Click "Load unpacked" and pick the folder</h3>
+      <p>Select the <code>read-aloud</code> folder itself (not a file inside it) and click <b>Select</b> / <b>Open</b>.</p>
+      <img class="shot" src="step2-load-unpacked.png" alt="Click Load unpacked" loading="lazy">
+    </li>
+    <li>
+      <h3>Done. Pin it.</h3>
+      <p>Click the puzzle-piece 🧩 at the top right, then the pin 📌 next to <b>Read Aloud – Natural Voice</b>.</p>
+      <img class="shot" src="step3-installed.png" alt="Read Aloud installed" loading="lazy">
+    </li>
+  </ol>
+
+  <h2>How to use</h2>
+  <div class="card">
+    <ul>
+      <li>Highlight text on any page → right-click → <b>Read aloud</b>.</li>
+      <li>The first time, it downloads the voice (about 330 MB, usually under a minute). After that it starts almost instantly.</li>
+      <li>Click the blue speaker icon in the toolbar to change voice or speed, pause or stop.</li>
+      <li>Shortcuts: <b>Alt+Shift+R</b> reads, <b>Alt+Shift+S</b> stops (Mac: <b>Option+Shift+R / S</b>).</li>
+    </ul>
+  </div>
+
+  <h2>Troubleshooting</h2>
+  <div class="card">
+    <ul>
+      <li><b>"Manifest file is missing or unreadable"</b>: you picked the wrong folder. Pick the one that directly contains <code>manifest.json</code>.</li>
+      <li><b>No "Read aloud" in the menu</b>: select text first, and reload pages that were open when you installed.</li>
+      <li><b>Nothing happens the first time</b>: it's downloading the voice. Click the speaker icon to see progress.</li>
+      <li><b>Doesn't work on some pages</b>: browsers block extensions on their own pages (like <code>chrome://</code> and the Web Store).</li>
+      <li><b>Updating</b>: download the new zip, replace the folder's contents, then click ↻ on the extension's card.</li>
+    </ul>
+  </div>
+
+  <h2>Privacy</h2>
+  <p>No servers, no accounts, no tracking. Your text is processed on your computer. The only network request is a one-time download of the open-source voice model from Hugging Face. English only for now.</p>
+
+  <footer>
+    Free and open source · <a href="https://github.com/shimshihub/read-aloud">Source on GitHub</a>
+  </footer>
+</main>
+</body>
+</html>
