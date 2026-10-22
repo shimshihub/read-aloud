@@ -1,0 +1,17 @@
+:root { color-scheme: light dark; --bg: #f6f7fb; --card: #fff; --fg: #1a1d26; --muted: #5d6478; --line: #e1e4ec; --accent: #2b4cff; }
+@media (prefers-color-scheme: dark) { :root { --bg: #0d1220; --card: #141a2c; --fg: #e6e9f2; --muted: #9aa2b8; --line: #2a3350; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 640px; margin: 0 auto; padding: 48px 16px 64px; }
+h1 { font-size: 28px; margin: 12px 0 4px; }
+.lead { color: var(--muted); font-size: 18px; margin: 0 0 28px; }
+h2 { font-size: 17px; margin: 0 0 4px; }
+.steps { list-style: none; padding: 0; margin: 0 0 24px; counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding: 16px 16px 16px 60px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 12px; }
+.steps li::before { content: counter(s); position: absolute; left: 16px; top: 16px; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: grid; place-items: center; }
+.steps p, .card p { margin: 0; color: var(--muted); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.card ul { margin: 6px 0 0; padding-left: 20px; color: var(--muted); }
+kbd { font: 13px ui-monospace, monospace; border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 6px; background: var(--bg); color: var(--fg); }
+.foot { color: var(--muted); font-size: 13px; margin-top: 28px; }
+a { color: var(--accent); }

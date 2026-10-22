@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Read Aloud is installed</title>
+<link rel="stylesheet" href="welcome.css">
+</head>
+<body>
+<main>
+  <img src="icons/128.png" width="72" height="72" alt="">
+  <h1>Read Aloud is installed 🎉</h1>
+  <p class="lead">Select text on any page and hear it in a natural voice.</p>
+
+  <ol class="steps">
+    <li>
+      <h2>Pin it to your toolbar</h2>
+      <p>Click the puzzle-piece icon 🧩 at the top right of the browser, then click the pin 📌 next to <b>Read Aloud</b>. Its blue speaker icon now stays visible.</p>
+    </li>
+    <li>
+      <h2>Select text and right-click</h2>
+      <p>Highlight a sentence or paragraph, right-click it, and choose <b>Read aloud</b>.</p>
+    </li>
+    <li>
+      <h2>Give it a minute the first time</h2>
+      <p>The first time, it downloads the voice (about 330&nbsp;MB, usually under a minute). After that it starts almost instantly and works offline.</p>
+    </li>
+  </ol>
+
+  <div class="card">
+    <h2>Handy extras</h2>
+    <ul>
+      <li>Click the speaker icon to <b>pick a voice</b>, change the <b>speed</b>, or <b>pause / stop</b>.</li>
+      <li>Keyboard: <kbd id="k1">Alt+Shift+R</kbd> reads the selection, <kbd id="k2">Alt+Shift+S</kbd> stops.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Private by design</h2>
+    <p>The voice runs on your own computer. Your text is never sent anywhere. The only download is the voice model itself, from Hugging Face. English only for now.</p>
+  </div>
+
+  <p class="foot">Voice: <a href="https://huggingface.co/hexgrad/Kokoro-82M" target="_blank">Kokoro-82M</a> (Apache 2.0) · <a href="https://github.com/shimshihub/read-aloud" target="_blank">Project page</a></p>
+</main>
+<script src="welcome.js"></script>
+</body>
+</html>

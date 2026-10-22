@@ -1,0 +1,18 @@
+{
+  "name": "read-aloud",
+  "version": "1.0.0",
+  "description": "Select text, right-click, hear it in a natural open-source voice (Kokoro). Chrome/Brave extension.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "kokoro-js": "^1.2.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  },
+  "private": true,
+  "repository": "github:shimshihub/read-aloud"
+}
